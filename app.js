@@ -1,15 +1,9 @@
+const express = require('express');
+const app = new express();
+var path = require("path");
 
-var http = require('http'),
-    fs = require('fs');
-
-
-fs.readFile('./index.html', function (err, html) {
-    if (err) {
-        throw err; 
-    }       
-    http.createServer(function(request, response) {  
-        response.writeHeader(200, {"Content-Type": "text/html"});  
-        response.write(html);  
-        response.end();  
-    }).listen(8000);
+app.get('/', function(request, response){
+    response.sendFile(path.join(__dirname+'/index.html'));
 });
+
+app.listen(3000);
